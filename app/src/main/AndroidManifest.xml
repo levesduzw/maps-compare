@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="levente.sermaul.mapscompare">
+
+    <uses-permission android:name="levente.sermaul.mapscompare.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <permission
+        android:name="levente.sermaul.mapscompare.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="levente.sermaul.mapscompare.permission.MAPS_RECEIVE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ds_48px"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="MAPQUEST_MAPID"
+            android:value="srangoSi6CHCG5QJ6OkO3aEMUySnXRKi" />
+        <meta-data
+            android:name="MAPQUEST_ACCESS_TOKEN"
+            android:value="kDCIUt3xlRJVWTvR" />
+        <meta-data
+            android:name="MAPBOX_MAPID"
+            android:value="mapbox.streets-satellite" />
+        <meta-data
+            android:name="MAPBOX_ACCESS_TOKEN"
+            android:value="pk.eyJ1IjoibGV2ZXNkdXp3IiwiYSI6ImNpdjhqeGkwYzAwMWMydHBmcnc3MmdwYWMifQ.3kFmZHgdB3CNA9yN1XJrRA" />
+        <meta-data
+            android:name="BING_KEY"
+            android:value="AurJVD33OZvQRlQJR1RDXP7lY9dRXrUBS9cqFikiShZSQze3ScNqjOtkDZVw8ue3" />
+        <meta-data
+            android:name="HEREWEGO_APPID"
+            android:value="2JXgMmZ5DVoR6yTHJwcg" />
+        <meta-data
+            android:name="HEREWEGO_APPCODE"
+            android:value="nk-J0pHKR1urxEhlv58Xsg" />
+
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="SCROLL_MAP" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/SettingsTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
+        <activity android:name=".activity.FavoritePlacesActivity"
+            android:label="@string/title_activity_favorite_places"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/FavPlacesTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
+    </application>
+</manifest>

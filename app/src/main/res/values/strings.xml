@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Maps Compare</string>
+    <string name="title_activity_main">Maps Compare</string>
+    <string name="drawer_open"></string>
+    <string name="drawer_close">Maps Compare</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string-array name="pref_screen_orientation_titles">
+        <item>Default</item>
+        <item>Force Portrait</item>
+        <item>Force Landscape</item>
+    </string-array>
+    <string-array name="pref_screen_orientation_values">
+        <item>default</item>
+        <item>portrait</item>
+        <item>landscape</item>
+    </string-array>
+
+
+    <string-array name="pref_fab_behavior_titles">
+        <item>New map replaces current map</item>
+        <item>New map replaces other map</item>
+    </string-array>
+    <string-array name="pref_fab_behavior_values">
+        <item>replace current</item>
+        <item>replace other</item>
+    </string-array>
+
+    <string name="settings_title">Settings</string>
+    <string name="pref_screen_orientation">Enable screen rotation</string>
+    <string name="pref_rotation_gestures">Enable rotation gestures</string>
+    <string name="pref_fab_behavior">Fullscreen button long-press behavior</string>
+    <string name="pref_show_crosshair">Show crosshair</string>
+    <string name="pref_show_crosshair_summary">Displays a small crosshair at the center of map views.</string>
+    <string name="title_activity_favorite_places">Favorite places</string>
+
+    <string name="map_select_spinner_prompt_1">Select map #1:</string>
+    <string name="map_select_spinner_prompt_2">Select map #2:</string>
+</resources>

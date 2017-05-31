@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="158.5dp"
+    android:id="@+id/zoom_controls"
+
+    android:paddingRight="15dp"
+    android:paddingBottom="9dp"
+    android:clipToPadding="false"
+    android:layout_gravity="bottom|right">
+
+    <ImageButton
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:textColor="#616161"
+        android:textSize="30sp"
+
+        android:src="@mipmap/map_lock"
+        android:background="@drawable/selector_btn"
+        android:id="@+id/lockButton"
+        android:layout_marginBottom="16.5sp"
+        android:layout_gravity="right"
+        android:gravity="center|top"
+
+        android:elevation="4dp"
+        android:onClick="buttonClicked"
+        android:alpha="0.85"
+        />
+
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:text="＋"
+        android:textColor="#616161"
+        android:textSize="30sp"
+        android:background="@drawable/selector_zoom_in_btn"
+        android:id="@+id/zoomInButton"
+        android:layout_gravity="right"
+        android:gravity="center|top"
+        android:elevation="5dp"
+        android:paddingTop="4dp"
+        android:onClick="buttonClicked"
+        android:alpha="0.85"
+    />
+
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:text="－"
+        android:textColor="#616161"
+        android:textSize="30sp"
+        android:background="@drawable/selector_zoom_out_btn"
+        android:id="@+id/zoomOutButton"
+        android:layout_gravity="right"
+        android:gravity="center|top"
+        android:elevation="5dp"
+        android:paddingTop="4dp"
+        android:onClick="buttonClicked"
+        android:alpha="0.85"/>
+
+</LinearLayout>

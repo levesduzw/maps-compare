@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:id="@+id/group2">
+
+        <item
+            android:title="Active maps"
+            android:id="@+id/activeMapsItem">
+
+            <menu android:id="@+id/activeMaps">
+                <group android:id="@+id/googleMapsGroup">
+                    <item
+                        android:title="Google Maps"
+                        android:id="@+id/googlemaps"
+                        android:checked="true"
+                        android:icon="@drawable/maps_icon">
+                    </item>
+                    <item
+                        android:title="Normal map"
+                        android:id="@+id/googleMapsNormal">
+                    </item>
+                    <item
+                        android:title="Satellite"
+                        android:id="@+id/googleMapsSatellite">
+
+                    </item>
+                </group>
+
+                <group android:id="@+id/osmGroup">
+                    <item
+                        android:title="OpenStreetMap"
+                        android:id="@+id/openstreetmap"
+                        android:checked="true"
+                        android:icon="@drawable/osm_icon"
+                        >
+                    </item>
+                    <item
+                        android:title="Normal map"
+                        android:id="@+id/osmNormal">
+                    </item>
+                    <!--<item todo itt lehetne másik tile provider!!
+                        android:title="Satellite"
+                        android:id="@+id/osmSatellite">
+                    </item>-->
+                </group>
+
+                <group android:id="@+id/mapboxGroup"
+                    >
+                    <item
+                        android:title="Mapbox"
+                        android:id="@+id/mapbox"
+                        android:checked="true"
+                        android:icon="@drawable/mapbox_icon">
+                    </item>
+                    <item
+                        android:title="Normal map"
+                        android:id="@+id/mapboxNormal">
+                    </item>
+                    <item
+                        android:title="Satellite"
+                        android:id="@+id/mapboxSatellite">
+
+                    </item>
+                </group>
+
+                <group android:id="@+id/hereMapsGroup"
+                    >
+                    <item
+                        android:title="HERE WeGo"
+                        android:id="@+id/heremaps"
+                        android:checked="true"
+                        android:icon="@drawable/here_icon">
+                    </item>
+                    <item
+                        android:title="Normal map"
+                        android:id="@+id/hereMapsNormal">
+                    </item>
+                    <item
+                        android:title="Satellite"
+                        android:id="@+id/hereMapsSatellite">
+                    </item>
+                </group>
+
+                <group android:id="@+id/bingMapsGroup"
+                    >
+                    <item
+                        android:title="Bing Maps"
+                        android:id="@+id/bingmaps"
+                        android:checked="true"
+                        android:icon="@drawable/bing_icon">
+                    </item>
+                    <item
+                        android:title="Normal map"
+                        android:id="@+id/bingMapsNormal">
+                    </item>
+                    <item
+                        android:title="Satellite"
+                        android:id="@+id/bingMapsSatellite">
+                    </item>
+                </group>
+
+            </menu>
+
+        </item>
+
+        <item
+            android:title="Splitscreen mode"
+            android:id="@+id/splitscreen_mode"
+            android:icon="@drawable/ds_48px"
+            >
+        </item>
+
+        <item
+            android:title="Select maps..."
+            android:id="@+id/select_maps"
+            android:icon="@drawable/ds_48px"
+            android:visible="false">
+        </item>
+
+        <item
+            android:title="Fullscreen mode"
+            android:id="@+id/fullscreen_mode"
+            android:icon="@drawable/ds_48px_2">
+
+        </item>
+
+        <item
+            android:title="Location actions"
+            android:id="@+id/locationActionsItem">
+
+            <menu android:id="@+id/locationActionsMenu" >
+                <group android:id="@+id/locationActionsGroup">
+                    <item
+                        android:title="Add to Favorite places"
+                        android:id="@+id/add_favorite_item"
+                        android:icon="@drawable/ic_star_border_black_24dp">
+                    </item>
+
+                    <item
+                        android:title="View Favorite places"
+                        android:id="@+id/favorite_places"
+                        android:icon="@drawable/ic_storage_black_24dp">
+
+                    </item>
+
+                    <item android:title="My location"
+                        android:id="@+id/my_location"
+                        android:icon="@drawable/ic_my_location_black_24dp">
+                    </item>
+
+
+                </group>
+            </menu>
+
+        </item>
+
+
+    </group>
+
+    <item android:title="Settings"
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_black_24dp">
+    </item>
+
+    <item android:title="About"
+        android:id="@+id/about"
+        android:icon="@drawable/ic_info_black_24dp">
+    </item>
+
+</menu>
