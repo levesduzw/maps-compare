@@ -150,7 +150,7 @@ public class FavoritePlacesActivity extends AppCompatActivity implements OnFavor
                     continue;
                 } else {
                     i++;
-                    writer.write(line + System.getProperty("line.separator"));      // ez mi?
+                    writer.write(line + System.getProperty("line.separator"));      // ez mi? CR LF
                 }
             }
             writer.close();

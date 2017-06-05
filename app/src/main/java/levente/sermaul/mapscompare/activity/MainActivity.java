@@ -783,8 +783,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     // Google Maps nézet
     @Override
-    public void onMapReady(final GoogleMap googleMap) {
-        final GoogleMap map = googleMap;
+    public void onMapReady(final GoogleMap map) {
         gmf.map = map;
 
         Rect windowRect = new Rect();
@@ -831,6 +830,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         map.setMaxZoomPreference(18.0f);    // ne tudjon OSM-nél jobban zoomolni
         map.getUiSettings().setRotateGesturesEnabled(true);
+        map.setBuildingsEnabled(true);
         setRotationGesturesEnabled(rotationGesturesEnabled);
         float bearing;
 
@@ -1533,6 +1533,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getSupportFragmentManager().beginTransaction().hide(currentFullScreenVisibleFragment).commit();
         getSupportFragmentManager().beginTransaction().show(prevFullScreenFragment).commit();
+
+        // jelenlegi map lockjának elengedése
+        if (currentFullScreenVisibleFragment instanceof GoogleMapsFragment) {
+            lockMapToGmf = false;
+        } else if (currentFullScreenVisibleFragment == osmf) {
+            lockMapToOsmf = false;
+        } else if (currentFullScreenVisibleFragment == osmf2) {
+            lockMapToOsmf2 = false;
+        }
 
         Fragment temp = prevFullScreenFragment;
         prevFullScreenFragment = currentFullScreenVisibleFragment;
