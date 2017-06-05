@@ -760,8 +760,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     /// OSM setup
     public OSMFragment setUpOSM(OSMFragment targetFragment) {
         // Fragment létrehozás, hozzáadás
-        /*if (targetFragment == null) */
         targetFragment = new OSMFragment();
+
+
 
         getSupportFragmentManager().beginTransaction().add(R.id.linearLayout, targetFragment).commit();
         getSupportFragmentManager().executePendingTransactions();
@@ -1359,12 +1360,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             // ha az új map gmf
             if (mapType.equals("Google Maps")) {
+                //lockMapToGmf = false;   // lock elengedése, ha volt
                 setUpGoogleMaps();
                 currentFullScreenVisibleFragment = gmf;
                 return;
             }
 
             if (prevFullScreenFragment == gmf) {                          // ha az új map osmf, gmf-ről váltunk
+                lockMapToGmf = false;
                 osmf = setUpOSM(osmf);
                 if (mapType.equals("OpenStreetMaps")) {
                     osmf.setTileProvider(OSMFragment.TileProvider.MAPNIK);
@@ -1380,6 +1383,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
                 currentFullScreenVisibleFragment = osmf;
             } else if (prevFullScreenFragment == osmf) {                        // ha az új map osmf2, osmf-ről váltunk
+                lockMapToOsmf = false;
+                lockMapToOsmf2 = false;
+                osmf.zoomControls.getChildAt(0).setSelected(false);             // esetenként benyomódva marad a gomb
                 osmf2 = setUpOSM(osmf2);
                 if (mapType.equals("OpenStreetMaps")) {
                     osmf2.setTileProvider(OSMFragment.TileProvider.MAPNIK);
@@ -1394,8 +1400,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     osmf2.setTileProvider(OSMFragment.TileProvider.BING);
                 }
                 currentFullScreenVisibleFragment = osmf2;
-            } else if (prevFullScreenFragment == osmf2) {                  // ha az új map osmf, osmf2-ről váltunk
+            } else if (prevFullScreenFragment == osmf2) {                   // ha az új map osmf, osmf2-ről váltunk
+                lockMapToOsmf = false;
+                lockMapToOsmf2 = false;
+
                 // marad a régi osmf példány
+                osmf.zoomControls.getChildAt(0).setSelected(false);         // így benyomódva maradhat a gomb
+                osmf2.zoomControls.getChildAt(0).setSelected(false);
                 if (mapType.equals("OpenStreetMaps")) {
                     osmf.setTileProvider(OSMFragment.TileProvider.MAPNIK);
                 }
@@ -1419,27 +1430,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             getSupportFragmentManager().beginTransaction().remove(currentFullScreenVisibleFragment).commit();
             activeFragments.remove(currentFullScreenVisibleFragment);
 
-            /*if (prevFullScreenFragment == osmf && currentFullScreenVisibleFragment == osmf2) {
-                osmf = osmf2;   // osmf példány felülírásaa
-                osmf2 = null;
-                currentFullScreenVisibleFragment = osmf;
-            }*/
-            // új érték
-            //prevFullScreenFragment = currentFullScreenVisibleFragment;
-
-
             // Lehetőségek: gmf -> osmf,  osmf -> gmf,    osmf2 -> gmf,
             //                            osmf -> osmf2,  osmf2 -> osmf
 
-
             // ha az új map gmf
             if (mapType.equals("Google Maps")) {
+                //lockMapToGmf = false;   // lock elengedése, ha volt
                 setUpGoogleMaps();
                 currentFullScreenVisibleFragment = gmf;
                 return;
             }
 
-            if (currentFullScreenVisibleFragment == gmf) {                          // ha az új map osmf, gmf-ről váltunk
+            if (currentFullScreenVisibleFragment == gmf) {                          // ha az új map osmf, gmf-ről váltunk - itt a "current" a most kidobottat jelöli!
+                lockMapToGmf = false;
                 osmf2 = setUpOSM(osmf2);                                            // akkor a prev osmf, osmf2 kell!
                 if (mapType.equals("OpenStreetMaps")) {
                     osmf2.setTileProvider(OSMFragment.TileProvider.MAPNIK);
@@ -1457,6 +1460,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 currentFullScreenVisibleFragment = osmf2;
             } else if (currentFullScreenVisibleFragment == osmf) {                        // ha osmf-ről váltunk
                 if (prevFullScreenFragment == gmf) {
+                    lockMapToOsmf = false;
                     osmf = setUpOSM(osmf);
                     if (mapType.equals("OpenStreetMaps")) {
                         osmf.setTileProvider(OSMFragment.TileProvider.MAPNIK);
@@ -1472,25 +1476,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
 
                     currentFullScreenVisibleFragment = osmf;
-                } else {
-                    osmf2 = setUpOSM(osmf2);
+                } else {    // itt osmf2 volt (bug!)
+                    lockMapToOsmf = false;
+                    osmf = setUpOSM(osmf);
                     if (mapType.equals("OpenStreetMaps")) {
-                        osmf2.setTileProvider(OSMFragment.TileProvider.MAPNIK);
+                        osmf.setTileProvider(OSMFragment.TileProvider.MAPNIK);
                     }
                     if (mapType.equals("Mapbox")) {
-                        osmf2.setTileProvider(OSMFragment.TileProvider.MAPBOX);
+                        osmf.setTileProvider(OSMFragment.TileProvider.MAPBOX);
                     }
                     if (mapType.equals("Here Maps")) {
-                        osmf2.setTileProvider(OSMFragment.TileProvider.HEREWEGO);
+                        osmf.setTileProvider(OSMFragment.TileProvider.HEREWEGO);
                     }
                     if (mapType.equals("Bing Maps")) {
-                        osmf2.setTileProvider(OSMFragment.TileProvider.BING);
+                        osmf.setTileProvider(OSMFragment.TileProvider.BING);
                     }
 
-                    currentFullScreenVisibleFragment = osmf2;
+                    currentFullScreenVisibleFragment = osmf;
                 }
             } else if (currentFullScreenVisibleFragment == osmf2) {                  // ha osmf2-ről váltunk
                 // volt osmf
+                lockMapToOsmf2 = false;
                 osmf2 = setUpOSM(osmf2);
                 if (mapType.equals("OpenStreetMaps")) {
                     osmf2.setTileProvider(OSMFragment.TileProvider.MAPNIK);
@@ -1533,15 +1539,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getSupportFragmentManager().beginTransaction().hide(currentFullScreenVisibleFragment).commit();
         getSupportFragmentManager().beginTransaction().show(prevFullScreenFragment).commit();
-
-        // jelenlegi map lockjának elengedése
-        if (currentFullScreenVisibleFragment instanceof GoogleMapsFragment) {
-            lockMapToGmf = false;
-        } else if (currentFullScreenVisibleFragment == osmf) {
-            lockMapToOsmf = false;
-        } else if (currentFullScreenVisibleFragment == osmf2) {
-            lockMapToOsmf2 = false;
-        }
 
         Fragment temp = prevFullScreenFragment;
         prevFullScreenFragment = currentFullScreenVisibleFragment;
