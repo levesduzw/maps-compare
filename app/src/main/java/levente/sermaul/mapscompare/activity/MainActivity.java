@@ -474,6 +474,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         fabs[0].setVisibility(View.GONE);
                         fabs[1].setVisibility(View.GONE);
                         fabs[2].setVisibility(View.GONE);
+                        fabs[3].setVisibility(View.GONE);
 
                         return false;
                     } else {                                                // sima érintés esete: felengedéskor
@@ -1985,6 +1986,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         fullscreenLockMapToGmf = false;
         fullscreenLockMapToOsmf = false;
         fab.setVisibility(View.GONE);
+        fab2.setVisibility(View.GONE);
+        fab3.setVisibility(View.GONE);
+        fab4.setVisibility(View.GONE);
+        fab5.setVisibility(View.GONE);
 
         menu.findItem(R.id.select_maps).setVisible(true);
 

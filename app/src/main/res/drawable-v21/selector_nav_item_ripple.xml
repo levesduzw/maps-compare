@@ -6,5 +6,5 @@
     <item android:state_pressed="true">
         <ripple android:color="@color/colorPrimary" />
     </item>
-    <item android:drawable="@color/navdrawerbg" />
+
 </selector>
