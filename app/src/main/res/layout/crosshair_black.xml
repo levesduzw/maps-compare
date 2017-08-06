@@ -5,7 +5,7 @@
     android:visibility="invisible"
     android:id="@+id/crossbar_black"
     >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
